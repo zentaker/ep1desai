@@ -18,6 +18,18 @@ public class App {
             "" // windows no lleva contrasenna si es de xamp 
         );
 
+        /*
+         create table Users (
+         iduser int,
+         name varchar(255),
+         phone varchar(10),
+         city varchar(100)
+        )
+
+        insert into users values (1, 'ronaldo','9872637483', 'manchester');
+        insert into users values (2, 'Messi','9872637483', 'paris');
+         */
+
         
 
 
@@ -49,6 +61,18 @@ public class App {
 
 
         System.out.println("############# Consultas con callable statement - crear usuario ###############");
+
+        /*
+        create procedure crearUsuario ( in p_iduser int,
+								in p_name varchar(255), 
+								in p_phone varchar(10),
+								in p_city varchar(100) )
+        begin 
+        insert into users values (p_iduser, p_name,p_phone, p_city);
+        end
+         */
+
+
         CallableStatement callSp = con.prepareCall("call crearUsuario(?,?,?,?)");
         callSp.setInt(1, 4 );
         callSp.setString(2, "neymar");
@@ -58,6 +82,20 @@ public class App {
         System.out.println(resultado);
 
         System.out.println("############# Consultas con callable statement - Actualizar usuario ###############");
+
+        /*
+         create procedure actualizarUsuario ( in p_iduser int,
+									 in p_name varchar(255), 
+									 in p_phone varchar(10),
+									 in p_city varchar(100) )
+        begin 
+            update users 
+            set name=p_name, phone=p_phone, city=p_city
+            where iduser=p_iduser;
+        end
+         */
+
+
         CallableStatement callSp1 = con.prepareCall("call actualizarUsuario(?,?,?,?)");
         callSp1.setInt(1, 1 );
         callSp1.setString(2, "cristiano");
